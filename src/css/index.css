@@ -1,0 +1,17 @@
+#infoIzq {
+    display: flex;
+    flex-direction: column;
+}
+
+#infoDcha {
+    display: flex;
+    gap: 10px;
+}
+
+#contador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid gray;
+    border-radius: 50%;
+}
