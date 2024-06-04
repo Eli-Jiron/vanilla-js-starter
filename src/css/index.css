@@ -3,6 +3,10 @@
     font-family: monospace;
 }
 
+#mensaje {
+    color: #bc0000;
+}
+
 .tareasBorder {
     border: 1.5px solid black;
     border-radius: 5px;
