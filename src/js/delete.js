@@ -4,7 +4,7 @@ async function eliminarTarea(id) {
             method: 'DELETE',
         });
         const data = response.json();
-        window.location.reload()
+        window.location.reload();
     } catch (error) {
         console.log(error);
     }
