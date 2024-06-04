@@ -1,5 +1,20 @@
-body {
+* {
     user-select: none;
+    font-family: monospace;
+}
+
+.tareasBorder {
+    border: 1.5px solid black;
+    border-radius: 5px;
+    margin: 13px;
+}
+
+.tareas {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+    height: 50px;
 }
 
 #info{
@@ -10,10 +25,12 @@ body {
 #infoIzq {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 #infoDcha {
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
@@ -27,7 +44,12 @@ body {
     width: 75px;
 }
 
-#numTareasComp {
-    display: flex;
-    align-items: center;
+#listaTareas {
+    margin-top: 9px;
+    height: 32em;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 100%;
+    border: 1.5px solid;
+    border-radius: 5px;
 }
