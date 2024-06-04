@@ -1,5 +1,6 @@
 import { subirTarea } from "./post.js";
 import { recibirTareas } from "./get.js";
+import { eliminarTarea } from "./delete.js";
 
 let dato = document.getElementById('inputTarea');
 let btnAgregar = document.getElementById('btnAgregar');
@@ -23,6 +24,7 @@ promesaCumplida.forEach(e => {
 
     border.className = 'tareasBorder'
     divPadre.className = 'tareas'
+    button.id = e.id
 
     divTarea.appendChild(textoTarea); 
     divPadre.appendChild(checkbox)
@@ -31,6 +33,10 @@ promesaCumplida.forEach(e => {
     border.appendChild(divPadre)
 
     listaTareas.appendChild(border);
+
+    button.addEventListener('click', function () {
+        eliminarTarea(button.id)
+    })
 });
 }
 
