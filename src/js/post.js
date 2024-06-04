@@ -5,10 +5,10 @@ async function subirTarea(tarea) {
             headers: {
             'Content-Type': 'application/json',
             },
-            body: JSON.stringify({tarea})
+            body: JSON.stringify({tarea, estado: 'incompleto'})
         });
         const data = response.json();
-        window.location.reload()
+        window.location.reload();
     } catch (error) {
         console.log(error);
     }
