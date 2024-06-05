@@ -36,35 +36,38 @@ let promesa = await recibirTareas();
 promesa.forEach(e => {
     let border = document.createElement('div');
     let divPadre = document.createElement('div');
-    let checkbox = document.createElement('input');
-    let button = document.createElement('button');
     let divTarea = document.createElement('div'); 
+    let divBtn = document.createElement('div');
+    let checkbox = document.createElement('input');
+    let btnEliminar = document.createElement('button');
+    let btnEditar = document.createElement('button');
     let textoTarea = document.createTextNode(e.tarea);
+    let btnEliminarImg = document.createElement('img');
+    let btnEditarImg = document.createElement('img');
 
+    btnEditarImg.src = 'https://cdn.discordapp.com/attachments/1048493214971203646/1247963269960962129/P5xaTrav3o3U8hf.png?ex=6661efdd&is=66609e5d&hm=e74c9500616e1192b6a9781955a2d89fce3bceb9ceef43a935798fe5e593c7be&'
+    btnEliminarImg.src = 'https://cdn.discordapp.com/attachments/1048493214971203646/1247963269444931584/IP0AYyPEknzepsF.png?ex=6661efdd&is=66609e5d&hm=33233d66aae79eabd2cedaf4fd42c0e9275d41ad16307b1e4d192ea212933852&'
     checkbox.type = 'checkbox';
-    button.textContent = 'Borrar';
-
-    if (e.estado === 'incompleto') {
-        checkbox.className = 'checkboxStyle';
-    } else {
-        checkbox.className = 'check';
-    }
-    button.className = 'btnStyle'
     border.className = 'tareasBorder';
     divPadre.className = 'tareas';
-    checkbox.id = e.id;
-    button.id = e.id;
 
+    btnEliminar.appendChild(btnEliminarImg);
+    btnEditar.appendChild(btnEditarImg);
+    divBtn.appendChild(btnEditar)
+    divBtn.appendChild(btnEliminar)
     divTarea.appendChild(textoTarea); 
     divPadre.appendChild(checkbox);
     divPadre.appendChild(divTarea);
-    divPadre.appendChild(button);
+    divPadre.appendChild(divBtn);
     border.appendChild(divPadre);
 
     listaTareas.appendChild(border);
-
     checkbox.addEventListener('click', function () {
         checklist(checkbox.id);
+    })
+
+    checkbox.addEventListener('click', function () {
+        checklist(divPadre.id);
     })
 
     button.addEventListener('click', function () {
@@ -80,6 +83,6 @@ btnAgregar.addEventListener('click' , function () {
     if (dato.value.trim() !== '') {
         subirTarea(dato.value);
     } else {
-        mensaje.textContent = 'Debe ingresar una tarea';
+        mensaje.textContent = 'Debe ingresar texto';
     }
 });
