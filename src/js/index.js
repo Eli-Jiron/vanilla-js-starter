@@ -48,8 +48,20 @@ promesa.forEach(e => {
     btnEditarImg.src = 'https://cdn.discordapp.com/attachments/1048493214971203646/1247963269960962129/P5xaTrav3o3U8hf.png?ex=6661efdd&is=66609e5d&hm=e74c9500616e1192b6a9781955a2d89fce3bceb9ceef43a935798fe5e593c7be&'
     btnEliminarImg.src = 'https://cdn.discordapp.com/attachments/1048493214971203646/1247963269444931584/IP0AYyPEknzepsF.png?ex=6661efdd&is=66609e5d&hm=33233d66aae79eabd2cedaf4fd42c0e9275d41ad16307b1e4d192ea212933852&'
     checkbox.type = 'checkbox';
+
+    if (e.estado === 'incompleto') {
+        checkbox.className = 'unchecked'
+    } else {
+        checkbox.className = 'checked'
+    }
     border.className = 'tareasBorder';
     divPadre.className = 'tareas';
+    divPadre.id = e.id
+    btnEditarImg.className = 'btnImg'
+    btnEliminarImg.className = 'btnImg'
+    btnEditar.className = 'btnEditar'
+    btnEliminar.className = 'btnEliminar'
+    divBtn.className = 'divBtn'
 
     btnEliminar.appendChild(btnEliminarImg);
     btnEditar.appendChild(btnEditarImg);
@@ -60,18 +72,14 @@ promesa.forEach(e => {
     divPadre.appendChild(divTarea);
     divPadre.appendChild(divBtn);
     border.appendChild(divPadre);
-
     listaTareas.appendChild(border);
-    checkbox.addEventListener('click', function () {
-        checklist(checkbox.id);
-    })
 
     checkbox.addEventListener('click', function () {
         checklist(divPadre.id);
     })
 
-    button.addEventListener('click', function () {
-        eliminarTarea(button.id);
+    btnEliminar.addEventListener('click', function () {
+        eliminarTarea(divPadre.id);
     })
 
 });

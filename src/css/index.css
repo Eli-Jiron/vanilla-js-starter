@@ -47,6 +47,15 @@
     height: 24px;
 }
 
+.checked {
+    cursor: pointer;
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: rgb(126, 148, 204);
+    border-radius: 50%;
+}
+
 .unchecked {
     cursor: pointer;
     appearance: none;
