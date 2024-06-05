@@ -1,11 +1,11 @@
-async function subirTarea(tarea) {
+async function editarEstado(id, nuevoEstado) {
     try {
-        const response = await fetch('http://localhost:3000/api/todo/', {
-            method: 'POST',
+        const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
+            method: 'PUT',
             headers: {
             'Content-Type': 'application/json',
             },
-            body: JSON.stringify({tarea, estado: 'incompleto'})
+            body: JSON.stringify({estado: nuevoEstado})
         });
         const data = await response.json();
         window.location.reload();
@@ -14,4 +14,5 @@ async function subirTarea(tarea) {
     }
 }
 
-export { subirTarea }
+
+export { editarEstado }
