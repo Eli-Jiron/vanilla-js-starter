@@ -52,25 +52,25 @@ async function checklist(id) {
 function editar(id, tarea) {
     let modal = document.createElement('div');
     let divModal = document.createElement('div');
-    let btnCerrar = document.createElement('button')
+    let btnCerrar = document.createElement('button');
     let textoEditar = document.createElement('div');
     let input = document.createElement('input');
     let btnEnviar = document.createElement('button');
     let modalContent = document.createElement('div');
-    let divInput = document.createElement('div')
+    let divInput = document.createElement('div');
 
-    let txtTarea = document.createTextNode(`Editar: "${tarea}"`)
-    btnEnviar.textContent = 'Editar'
-    btnCerrar.textContent = 'X'
-    input.placeholder = 'Ingrese nueva tarea'
+    let txtTarea = document.createTextNode(`Editar: "${tarea}"`);
+    btnEnviar.textContent = 'Editar';
+    btnCerrar.textContent = 'X';
+    input.placeholder = 'Ingrese nueva tarea';
 
-    btnEnviar.className = 'btnTarea'
-    input.className = 'inputTarea'
-    btnCerrar.id = 'btnCerrar'
-    modal.className = 'modal'
-    modalContent.className = 'modalContent'
-    divModal.className = 'divModal'
-    divInput.id = 'downContent'
+    btnEnviar.className = 'btnTarea';
+    input.className = 'inputTarea';
+    btnCerrar.id = 'btnCerrar';
+    modal.className = 'modal';
+    modalContent.className = 'modalContent';
+    divModal.className = 'divModal';
+    divInput.id = 'downContent';
 
     textoEditar.appendChild(txtTarea);
     divInput.appendChild(input);
@@ -79,17 +79,25 @@ function editar(id, tarea) {
     modalContent.appendChild(divInput)
     divModal.appendChild(btnCerrar);
     divModal.appendChild(modalContent);
-    modal.appendChild(divModal)
+    modal.appendChild(divModal);
     document.body.appendChild(modal);
+
+    input.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            if (input.value.trim() !== '') {
+                editarTarea(id, input.value);
+            }
+        }
+    });
 
     btnEnviar.addEventListener('click', function () {
         if (input.value.trim() !== '') {
-            editarTarea(id, input.value)
+            editarTarea(id, input.value);
         }
     })
 
     btnCerrar.addEventListener('click', function () {
-        document.body.removeChild(modal)
+        document.body.removeChild(modal);
     })
 }
 
