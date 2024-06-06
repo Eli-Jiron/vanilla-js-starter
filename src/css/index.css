@@ -3,6 +3,29 @@
     font-family: monospace;
 }
 
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    width: 350px;
+    background-color: white;
+    border: 2px solid #c5d1da;
+}
+
 #mensaje {
     color: #bc0000;
 }

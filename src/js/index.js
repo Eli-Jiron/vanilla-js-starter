@@ -1,11 +1,30 @@
 import { subirTarea } from "./post.js";
 import { recibirTareas } from "./get.js";
 import { eliminarTarea } from "./delete.js";
-import { editarEstado } from "./put.js";
+import { editarEstado, editarTarea } from "./put.js";
 
-let dato = document.getElementById('inputTarea');
+let inputTarea = document.getElementById('inputTarea');
 let btnAgregar = document.getElementById('btnAgregar');
 let listaTareas = document.getElementById('listaTareas');
+let mensaje = document.getElementById('mensaje');
+
+btnAgregar.addEventListener('click', function () {
+    if (inputTarea.value.trim() !== '') {
+        subirTarea(inputTarea.value);
+    } else {
+        mensaje.textContent = 'Debe ingresar texto';
+    }
+});
+
+inputTarea.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        if (inputTarea.value.trim() !== '') {
+            subirTarea(inputTarea.value);
+        } else {
+            mensaje.textContent = 'Debe ingresar texto';
+        }
+    }
+});
 
 async function tareasCompletadas() {
     let contador = document.getElementById('contador');
@@ -28,6 +47,38 @@ async function checklist(id) {
             }
         }
     });
+}
+
+function editar(id, tarea) {
+    let modal = document.createElement('div');
+    let btnCerrar = document.createElement('button')
+    let textoEditar = document.createElement('div');
+    let input = document.createElement('input');
+    let btnEnviar = document.createElement('button');
+    let modalContent = document.createElement('div');
+
+    let txtTarea = document.createTextNode(`Editar: "${tarea}"`)
+
+    btnCerrar.textContent = 'X'
+    btnEnviar.textContent = 'Editar'
+    modal.className = 'modal'
+    modalContent.className = 'modalContent'
+
+    textoEditar.appendChild(txtTarea)
+    modalContent.appendChild(btnCerrar);
+    modalContent.appendChild(textoEditar);
+    modalContent.appendChild(input);
+    modalContent.appendChild(btnEnviar);
+    modal.appendChild(modalContent);
+    document.body.appendChild(modal);
+
+    btnEnviar.addEventListener('click', function () {
+        editarTarea(id, input.value)
+    })
+
+    btnCerrar.addEventListener('click', function () {
+        document.body.removeChild(modal)
+    })
 }
 
 cargarTareas();
@@ -78,6 +129,10 @@ promesa.forEach(e => {
         checklist(divPadre.id);
     })
 
+    btnEditar.addEventListener('click', function () {
+        editar(divPadre.id,  divTarea.textContent)
+    })
+
     btnEliminar.addEventListener('click', function () {
         eliminarTarea(divPadre.id);
     })
@@ -85,12 +140,3 @@ promesa.forEach(e => {
 });
 tareasCompletadas();
 }
-
-btnAgregar.addEventListener('click' , function () {
-    let mensaje = document.getElementById('mensaje');
-    if (dato.value.trim() !== '') {
-        subirTarea(dato.value);
-    } else {
-        mensaje.textContent = 'Debe ingresar texto';
-    }
-});
