@@ -1,11 +1,30 @@
 import { subirTarea } from "./post.js";
 import { recibirTareas } from "./get.js";
 import { eliminarTarea } from "./delete.js";
-import { editarEstado } from "./put.js";
+import { editarEstado, editarTarea } from "./put.js";
 
-let dato = document.getElementById('inputTarea');
+let inputTarea = document.getElementById('inputTarea');
 let btnAgregar = document.getElementById('btnAgregar');
 let listaTareas = document.getElementById('listaTareas');
+let mensaje = document.getElementById('mensaje');
+
+btnAgregar.addEventListener('click', function () {
+    if (inputTarea.value.trim() !== '') {
+        subirTarea(inputTarea.value);
+    } else {
+        mensaje.textContent = 'Debe ingresar texto';
+    }
+});
+
+inputTarea.addEventListener('keydown', function (event) {
+    if (event.key === 'Enter') {
+        if (inputTarea.value.trim() !== '') {
+            subirTarea(inputTarea.value);
+        } else {
+            mensaje.textContent = 'Debe ingresar texto';
+        }
+    }
+});
 
 async function tareasCompletadas() {
     let contador = document.getElementById('contador');
@@ -28,6 +47,58 @@ async function checklist(id) {
             }
         }
     });
+}
+
+function editar(id, tarea) {
+    let modal = document.createElement('div');
+    let divModal = document.createElement('div');
+    let btnCerrar = document.createElement('button');
+    let textoEditar = document.createElement('div');
+    let input = document.createElement('input');
+    let btnEnviar = document.createElement('button');
+    let modalContent = document.createElement('div');
+    let divInput = document.createElement('div');
+
+    let txtTarea = document.createTextNode(`Editar: "${tarea}"`);
+    btnEnviar.textContent = 'Editar';
+    btnCerrar.textContent = 'X';
+    input.placeholder = 'Ingrese nueva tarea';
+
+    btnEnviar.className = 'btnTarea';
+    input.className = 'inputTarea';
+    btnCerrar.id = 'btnCerrar';
+    modal.className = 'modal';
+    modalContent.className = 'modalContent';
+    divModal.className = 'divModal';
+    divInput.id = 'downContent';
+
+    textoEditar.appendChild(txtTarea);
+    divInput.appendChild(input);
+    divInput.appendChild(btnEnviar);
+    modalContent.appendChild(textoEditar);
+    modalContent.appendChild(divInput)
+    divModal.appendChild(btnCerrar);
+    divModal.appendChild(modalContent);
+    modal.appendChild(divModal);
+    document.body.appendChild(modal);
+
+    input.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter') {
+            if (input.value.trim() !== '') {
+                editarTarea(id, input.value);
+            }
+        }
+    });
+
+    btnEnviar.addEventListener('click', function () {
+        if (input.value.trim() !== '') {
+            editarTarea(id, input.value);
+        }
+    })
+
+    btnCerrar.addEventListener('click', function () {
+        document.body.removeChild(modal);
+    })
 }
 
 cargarTareas();
@@ -78,6 +149,10 @@ promesa.forEach(e => {
         checklist(divPadre.id);
     })
 
+    btnEditar.addEventListener('click', function () {
+        editar(divPadre.id,  divTarea.textContent)
+    })
+
     btnEliminar.addEventListener('click', function () {
         eliminarTarea(divPadre.id);
     })
@@ -85,12 +160,3 @@ promesa.forEach(e => {
 });
 tareasCompletadas();
 }
-
-btnAgregar.addEventListener('click' , function () {
-    let mensaje = document.getElementById('mensaje');
-    if (dato.value.trim() !== '') {
-        subirTarea(dato.value);
-    } else {
-        mensaje.textContent = 'Debe ingresar texto';
-    }
-});
