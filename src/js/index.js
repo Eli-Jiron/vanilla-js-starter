@@ -51,25 +51,35 @@ async function checklist(id) {
 
 function editar(id, tarea) {
     let modal = document.createElement('div');
+    let divModal = document.createElement('div');
     let btnCerrar = document.createElement('button')
     let textoEditar = document.createElement('div');
     let input = document.createElement('input');
     let btnEnviar = document.createElement('button');
     let modalContent = document.createElement('div');
+    let divInput = document.createElement('div')
 
     let txtTarea = document.createTextNode(`Editar: "${tarea}"`)
-
-    btnCerrar.textContent = 'X'
     btnEnviar.textContent = 'Editar'
+    btnCerrar.textContent = 'X'
+    input.placeholder = 'Ingrese nueva tarea'
+
+    btnEnviar.className = 'btnTarea'
+    input.className = 'inputTarea'
+    btnCerrar.id = 'btnCerrar'
     modal.className = 'modal'
     modalContent.className = 'modalContent'
+    divModal.className = 'divModal'
+    divInput.id = 'downContent'
 
-    textoEditar.appendChild(txtTarea)
-    modalContent.appendChild(btnCerrar);
+    textoEditar.appendChild(txtTarea);
+    divInput.appendChild(input);
+    divInput.appendChild(btnEnviar);
     modalContent.appendChild(textoEditar);
-    modalContent.appendChild(input);
-    modalContent.appendChild(btnEnviar);
-    modal.appendChild(modalContent);
+    modalContent.appendChild(divInput)
+    divModal.appendChild(btnCerrar);
+    divModal.appendChild(modalContent);
+    modal.appendChild(divModal)
     document.body.appendChild(modal);
 
     btnEnviar.addEventListener('click', function () {

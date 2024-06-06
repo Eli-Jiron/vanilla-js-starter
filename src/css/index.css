@@ -16,14 +16,39 @@
     overflow: auto;
 }
 
-.modalContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.divModal {
     height: 250px;
     width: 350px;
     background-color: white;
-    border: 2px solid #c5d1da;
+    border: 4px solid #c5d1da;
+    border-radius: 7px;
+}
+
+.modalContent {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+#btnCerrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e34f4f;
+    height: 25px;
+    width: 25px;
+    border: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    color: white;
+}
+
+#downContent {
+    display: flex;
+    flex-direction: column;
 }
 
 #mensaje {
@@ -125,13 +150,16 @@
     border-radius: 5px;
 }
 
-#inputTarea {
+.inputTarea {
     border: 2px solid #c5d1da;
+    height: 25px;
 }
 
-#btnAgregar {
+.btnTarea {
     background-color: #6558f5;
     color: white;
+    height: 25px;
     border: 0;
+    cursor: pointer;
 }
 
