@@ -83,7 +83,9 @@ function editar(id, tarea) {
     document.body.appendChild(modal);
 
     btnEnviar.addEventListener('click', function () {
-        editarTarea(id, input.value)
+        if (input.value.trim() !== '') {
+            editarTarea(id, input.value)
+        }
     })
 
     btnCerrar.addEventListener('click', function () {
