@@ -1,7 +1,4 @@
-import { subirTarea } from "./post.js";
-import { recibirTareas } from "./get.js";
-import { eliminarTarea } from "./delete.js";
-import { editarEstado, editarTarea } from "./put.js";
+import { getTasks, postTasks , deleteTasks, editTasks, editStatus } from "./api.js";
 
 let inputTarea = document.getElementById('inputTarea');
 let btnAgregar = document.getElementById('btnAgregar');
@@ -31,7 +28,6 @@ function msjSinTareas() {
     let txt = document.createTextNode('No hay tareas');
     h1.appendChild(txt);
     h1.id = 'sinTareas'
-    console.log(listaTareas.childNodes.length);
     if (listaTareas.childNodes.length === 0) { 
         listaTareas.appendChild(h1);
     }
@@ -61,7 +57,7 @@ function editar(id, tarea) {
     let btnEnviar = document.createElement('button');
     let modalContent = document.createElement('div');
     let divInput = document.createElement('div');
-    let txtTarea = document.createTextNode(`Editar: "${tarea}"`);
+    let txtTarea = document.createTextNode(`Editar: "${tarea.textContent}"`);
     btnEnviar.textContent = 'Editar';
     btnCerrar.textContent = 'X';
     input.placeholder = 'Ingrese nueva tarea';
@@ -88,6 +84,8 @@ function editar(id, tarea) {
         if (event.key === 'Enter') {
             if (input.value.trim() !== '') {
                 editarTarea(id, input.value);
+                tarea.textContent = input.value
+                document.body.removeChild(modal);
             }
         }
     });
@@ -95,6 +93,8 @@ function editar(id, tarea) {
     btnEnviar.addEventListener('click', function () {
         if (input.value.trim() !== '') {
             editarTarea(id, input.value);
+            tarea.textContent = input.value
+            document.body.removeChild(modal);
         }
     })
 
@@ -152,7 +152,7 @@ async function cargarTareas() {
         })
     
         btnEditar.addEventListener('click', function () {
-            editar(divPadre.id,  divTarea.textContent)
+            editar(divPadre.id,  divTarea)
         })
     
         btnEliminar.addEventListener('click', function () {
