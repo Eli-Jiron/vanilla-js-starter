@@ -80,12 +80,16 @@
     gap: 10px;
 }
 
-.btnEditar {
+.btnEditar, #btnFiltro {
     background-color: #6558f5;
     border: 0;
     border-radius: 8px;
-    color: beige;
     cursor: pointer;
+}
+
+#filtro {
+    display: flex;
+    gap: 5px;
 }
 
 .btnEliminar {
@@ -156,12 +160,12 @@
     border-radius: 5px;
 }
 
-.inputTarea {
+#inputTarea, #inputFiltro {
     border: 2px solid #c5d1da;
     height: 25px;
 }
 
-.btnTarea {
+#btnAgregar {
     background-color: #6558f5;
     color: white;
     height: 25px;
