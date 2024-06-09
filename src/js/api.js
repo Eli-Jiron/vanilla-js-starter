@@ -18,7 +18,6 @@ async function postTasks(tarea) {
       body: JSON.stringify({ tarea, estado: "incompleto" }),
     });
     const data = await response.json();
-    window.location.reload();
   } catch (error) {
     console.log(error);
   }
