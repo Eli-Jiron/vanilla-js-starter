@@ -1,4 +1,4 @@
-async function getTasks() {
+async function getTasks() { //Función de metodo GET
   try {
     const response = await fetch("http://localhost:3000/api/todo/");
     const data = await response.json();
@@ -8,7 +8,7 @@ async function getTasks() {
   }
 }
 
-async function postTasks(tarea) {
+async function postTasks(tarea) { //Función de metodo POST
   try {
     const response = await fetch("http://localhost:3000/api/todo/", {
       method: "POST",
@@ -23,7 +23,7 @@ async function postTasks(tarea) {
   }
 }
 
-async function deleteTasks(id) {
+async function deleteTasks(id) { //Función de metodo DELETE
   try {
     const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
       method: "DELETE",
@@ -34,7 +34,7 @@ async function deleteTasks(id) {
   }
 }
 
-async function editStatus(id, nuevoEstado) {
+async function editStatus(id, nuevoEstado) { //Función de metodo PUT para editar el estado
   try {
     const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
       method: "PUT",
@@ -49,7 +49,7 @@ async function editStatus(id, nuevoEstado) {
   }
 }
 
-async function editTasks(id, nuevaTarea) {
+async function editTasks(id, nuevaTarea) { //Función de metodo PUT para editar la tarea
   try {
     const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
       method: "PUT",

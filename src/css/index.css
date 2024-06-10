@@ -152,7 +152,7 @@
 
 #listaTareas {
     margin-top: 9px;
-    height: 32em;
+    height: 30em;
     overflow-x: hidden;
     overflow-y: scroll;
     width: 10 0%;
@@ -160,16 +160,28 @@
     border-radius: 5px;
 }
 
-#inputTarea, #inputFiltro {
+#inputTarea, #inputFiltro, .inputTarea {
     border: 2px solid #c5d1da;
     height: 25px;
 }
 
-#btnAgregar {
+#btnAgregar, .btnTarea {
     background-color: #6558f5;
     color: white;
     height: 25px;
     border: 0;
     cursor: pointer;
+}
+
+#titulo {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.tituloConte {
+    font-weight: bolder;
+    font-size: 17px;
 }
 
