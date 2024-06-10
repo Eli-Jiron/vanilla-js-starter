@@ -10,14 +10,14 @@ tareasCompletadas();
 msjSinTareas();
 
 recibir();
-async function recibir() {
+async function recibir() { //Recibe la info desde la api y la pasa como parametro a ser renderizara
   const promesa = await getTasks();
   promesa.forEach((e) => {
     renderTarea(e);
   });
 }
 
-function renderTarea(e) {
+function renderTarea(e) { //Función encargada de renderizar las tareas
   let border = document.createElement("div");
   let divPadre = document.createElement("div");
   let divTarea = document.createElement("div");
@@ -58,19 +58,19 @@ function renderTarea(e) {
   border.appendChild(divPadre);
   listaTareas.appendChild(border);
 
-  btnEliminar.addEventListener("click", function () {
+  btnEliminar.addEventListener("click", function () { //Elimina la tarea tanto de la pagina como de la api, resta uno al contador de tareas completadas
     if (contador.textContent !== "0") {
       contador.textContent = parseInt(contador.textContent) - 1;
     }
     listaTareas.removeChild(border);
-    msjSinTareas();
     deleteTasks(divPadre.id);
+    msjSinTareas();
   });
-  btnEditar.addEventListener("click", function () {
+  btnEditar.addEventListener("click", function () { //Lanza un modal para editar la tarea
     renderModal(divPadre.id, divTarea);
   });
 
-  checkbox.addEventListener("click", function () {
+  checkbox.addEventListener("click", function () { //Función de los checkbox, cambia el estado de la tarea tanto en la pagina como en la api; suma o resta al contador dependiendo de su estado
     if (checkbox.className === "unchecked") {
       editStatus(divPadre.id, "completo");
       checkbox.className = "checked";
@@ -83,7 +83,7 @@ function renderTarea(e) {
   });
 }
 
-function renderModal(id, tarea) {
+function renderModal(id, tarea) { //Función que renderiza un modal para editar tareas
   let modal = document.createElement("div");
   let divModal = document.createElement("div");
   let btnCerrar = document.createElement("button");
@@ -114,9 +114,10 @@ function renderModal(id, tarea) {
   modal.appendChild(divModal);
   document.body.appendChild(modal);
 
-  input.addEventListener("keydown", function (event) {
+  input.addEventListener("keydown", function (event) { //Función para editar la tarea al teclear "ENTER"
     if (event.key === "Enter") {
-      if (input.value.trim() !== "") {
+      if (input.value.trim() !== "") { //Valida que el espacio no esté vacío
+        //Edita la tarea tanto en la pagina como en la api y cierra el modal
         editTasks(id, input.value);
         tarea.textContent = input.value;
         document.body.removeChild(modal);
@@ -124,15 +125,16 @@ function renderModal(id, tarea) {
     }
   });
 
-  btnEnviar.addEventListener("click", function () {
-    if (input.value.trim() !== "") {
+  btnEnviar.addEventListener("click", function () { //Función para editar la tarea al clicklear en el botón "Editar"
+    if (input.value.trim() !== "") { //Valida que el espacio no esté vacío
+      //Edita la tarea tanto en la pagina como en la api y cierra el modal
       editTasks(id, input.value);
       tarea.textContent = input.value;
       document.body.removeChild(modal);
     }
   });
 
-  btnCerrar.addEventListener("click", function () {
+  btnCerrar.addEventListener("click", function () { //Cierra el modal
     document.body.removeChild(modal);
   });
 }
