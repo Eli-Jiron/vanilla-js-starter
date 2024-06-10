@@ -11,7 +11,7 @@ document.getElementById("btnFiltro").addEventListener("click", function () { //F
   recibir();
 });
 
-document.getElementById("inputFiltro").addEventListener("input", function (event) { //Función para filtrar tareas por letra
+document.getElementById("inputFiltro").addEventListener("input", function () { //Función para filtrar tareas por letra
     if (inputFiltro.value.trim() !== "") {
       filtro(inputFiltro.value.toLowerCase());
     } else { //En caso de que el input esté vacío, renderiza todas las tareas
